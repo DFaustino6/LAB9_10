@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'Blog@index');
+
+Route::resource('posts','Microposts');

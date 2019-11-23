@@ -55,15 +55,15 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="img1.png" >
+      <img src="resources\assets\img1.png" >
     </div>
 
     <div class="item">
-      <img src="img2.png" >
+      <img src="resources\assets\img2.png" >
     </div>
 
     <div class="item">
-      <img src="img3.png" >
+      <img src="resources\assets\img3.png" >
     </div>
   </div>
 
@@ -81,47 +81,47 @@
   <div class="row">
     <div class="col-sm-2">
       <div class="well text-center">
-        <a href="#"><img src="plus.png" style="width: 60%;" class="center"></a>
+        <a href="#"><img src="resources\assets\plus.png" style="width: 60%;" class="center"></a>
         <p>Add new post</p>
       </div>
     </div>
     <div class="col-sm-8">
       <div class="well" >
         <div class="panel-group">
-          {foreach item=post from=$posts}
+        @foreach ($post as $posts)
           <div class="panel panel-default" style="background-color:#0099ff ">
             <div class="panel panel-heading" style="background-color:#0099ff">
               <div class="media">
                 <div class="media-top">
-                  <img src="img_avatar1.png" class="media-object" style="width:12%">
+                  <img src="resources\assets\img_avatar1.png" class="media-object" style="width:12%">
                 </div>
               </div>
               <div class="row" style="padding: 1%" >
                 <div class="col-sm-7">
-                    <h4 style="color:white;">Created by:{$post.name}</h4>
+                    <h4 style="color:white;">Created by:{{$posts->username}}</h4>
                 </div>
                 <div class="col-sm-5">
-                  <h4 style="color:white;text-align: right">Last updated:{$post.updated_at}</h4>
+                  <h4 style="color:white;text-align: right">Last updated:{{$posts->update_at}}</h4>
                 </div>
               </div>
             </div>
             <div class="panel-body" style="background-color: white;border-style:solid;border-width: thin;border-radius:5px">
-                <h4 style="color: black">{$post.content}</h4>
+                <h4 style="color: black">{{$posts->content}}</h4>
             </div>
             <div class="panel-footer" style="background-color:#0099ff">
               <div class="row" style="padding: 1%; "> 
                 <div class="col-sm-10">
-                  <h4 style="color: white"> Created:{$post.created_at}</h4>
+                  <h4 style="color: white"> Created:{{$posts->created_at}}</h4>
                       </div>
                       <div class="col-sm-2">
-                        <button type="button" class="btn btn-success" style="width: 90%"><span class="glyphicon glyphicon-arrow-up"></span>&nbsp;{$post.upvotes}</button>
+                        <button type="button" class="btn btn-success" style="width: 90%"><span class="glyphicon glyphicon-arrow-up"></span>&nbsp;{{$posts->upvotes}}</button>
                           
-                        <button type="button" class="btn btn-danger" style="width: 90%"> <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;{$post.downvotes}</button>
+                        <button type="button" class="btn btn-danger" style="width: 90%"> <span class="glyphicon glyphicon-arrow-down"></span>&nbsp;{{$posts->downvotes}}</button>
                       </div>  
                     </div>
                   </div>  
           </div>
-          {/foreach}
+          @endforeach
         </div>
       </div>  
     </div>
