@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/index', function () {
+Route::get('/', function () {
     return '<nav class="navbar navbar-inverse" style="background-color: #006699; border-color: #006699">
   <div class="container-fluid">
     <div class="navbar-header">
