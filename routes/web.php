@@ -12,7 +12,19 @@
 */
 
 Route::get('/', function () {
-    return '<nav class="navbar navbar-inverse" style="background-color: #006699; border-color: #006699">
+    return '<!DOCTYPE html>
+<hmtl>
+<head>
+  <title>FORUM</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <style>
+        .carousel-inner img {
+            margin: auto;
+        }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse" style="background-color: #006699; border-color: #006699">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" style="color: white" href="#">{$FORUMName}</a>
@@ -44,5 +56,8 @@ Route::get('/', function () {
       <li><a style="color: white;">{$MENU6}</a></li>
     </ul>
   </div>
-</nav>';
+</nav>
+</body>
+</hmtl>';
+
 });
