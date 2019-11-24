@@ -15,7 +15,7 @@ class Blog extends Controller
             'MENU3' => 'SubForum3',
             'MENU4' => 'Login',
             'MENU5' => 'Register',
-            'href5' => 'Blog@register',
+            'href5' => 'register',
             'db'   => $db,
          );
         
@@ -31,7 +31,7 @@ class Blog extends Controller
             'MENU4' => 'Login',
             'MENU5' => 'Register',
            /* 'href4' => 'Login',*/
-            'href5' => 'Blog@register',
+            'href5' => 'register',
          );
         
         return view('register_template',$values);
