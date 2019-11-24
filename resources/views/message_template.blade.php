@@ -3,7 +3,7 @@
 <head>
 	<title>FORUM</title>
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  	<meta http-equiv="refresh" content="3; url=/">
+  	<meta http-equiv="refresh" content="3; url={{action('Blog@index')}}">
 </head>
 <body>
 
@@ -34,14 +34,14 @@
 	    	</li>
         </ul>
 		<ul class="nav navbar-nav navbar-right">
-			<li><a href="{$href4}" style="color: white">{{$MENU4}}</a></li>
-			<li><a href="{{$href5}}" style="color: white">{{$MENU5}}</a></li>
+			<li><a href="" style="color: white">{{$MENU4}}</a></li>
+			<li><a href="" style="color: white">{{$MENU5}}</a></li>
 		</ul>
 	</div>
 </nav>
 <div class="container" style="padding-top: 1%">
 	<div class="container-fluid text-center" style="background-color: {{$back_color}};border-radius:5px">
-		<h4 style="color: {{$text_color}};">{{$Msg}}&nbsp;<span class="{$icon}"></span></h4>
+		<h4 style="color: {{$text_color}};">{{$Msg}}&nbsp;<span class="{{$icon}}"></span></h4>
 	</div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

@@ -13,5 +13,23 @@ class Blog_model
         $query=DB::select($sql);
         return $query;
     } 
+
+    public static function check_email($Email){
+        $email="SELECT * FROM users where email='$Email'";
+        $query=DB::select($email);
+        return $query;
+    }
+
+    public static function register_user($Username,$Email,$pwdHash){
+        $newUser="INSERT INTO users(name,email,password_digest,created_at,updated_at)
+        VALUES ('$Username','$Email','$pwdHash',NOW(),NOW())";
+        $query=DB::insert($newUser);
+    }
+
+    public static function check_pwd($Email,$pwdHash){
+        $pass="SELECT * FROM users where email = '$Email' AND password_digest='$pwdHash'";
+        $query=DB::select($pass);
+        return $query;
+    }
 }
 ?>

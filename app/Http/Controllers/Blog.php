@@ -14,6 +14,7 @@ class Blog extends Controller
             'MENU2' => 'SubForum2',
             'MENU3' => 'SubForum3',
             'MENU4' => 'Login',
+            'href4' => 'login',
             'MENU5' => 'Register',
             'href5' => 'register',
             'db'   => $db,
@@ -23,46 +24,84 @@ class Blog extends Controller
     }
 
     public function register(){
-        $Username='';
-        $Email='';
-        if(isset($_REQUEST['ErrorType'])){
-            $ErrorMsg=errorMsg($_REQUEST['ErrorType']);
-            $Username=$_REQUEST['Username'];
-            $Email=$_REQUEST['Email'];
-         }
-
         $values = array(
             'FORUMName' => 'Daw Forum',
             'MENU1' => 'SubForum1',
             'MENU2' => 'SubForum2',
             'MENU3' => 'SubForum3',
             'MENU4' => 'Login',
+            'href4' => 'login',
             'MENU5' => 'Register',
-            'Username' => $Username,
-            'Email' => $Email,
-           /*'href4' => 'Login',*/
             'href5' => 'register',
          );  
+
         return view('register_template',$values);
     }
 
-    public function register_action(){
-        $db=Blog_model::get_posts();
+    public function register_action(Request $request){
         $values = array(
             'FORUMName' => 'Daw Forum',
             'MENU1' => 'SubForum1',
             'MENU2' => 'SubForum2',
             'MENU3' => 'SubForum3',
             'MENU4' => 'Login',
-            'MENU5' => 'Register',
-           /*'href4' => 'Login',
-            'href5' => 'Register',*/
             'Msg'   => 'Registration Completed.Welcome!',
             'text_color' => 'green',
             'back_color' => '#00d269',
             'icon' => 'glyphicon glyphicon-ok',
-         ); 
-        return view('message_template',$values);
+         );
+
+        $Username=$request->Username;
+        $Email=$request->Email;
+        $pwdHash=substr(md5($request->Pwd),0,32);
+        $nrows=Blog_model::check_email($request->Email);
+
+        if(count($nrows)>0)
+            return redirect('register')->withErrors('Email já existe na base de dados')->withInput($request->except('Email'));
+        elseif($request->Pwd!=$request->ConfPwd)
+            return redirect('register')->withErrors('Passwords não coincidem')->withInput();
+        else{
+            Blog_model::register_user($Username,$Email,$pwdHash);
+            return view('message_template',$values);
+        }     
     }
+
+    public function login(){
+        $values = array(
+            'FORUMName' => 'Daw Forum',
+            'MENU1' => 'SubForum1',
+            'MENU2' => 'SubForum2',
+            'MENU3' => 'SubForum3',
+            'MENU4' => 'Login',
+            'href4' => 'login',
+            'MENU5' => 'Register',
+            'href5' => 'register',
+         ); 
+
+        return view('login_template',$values);
+    }
+
+    public function login_action(Request $request){
+        $values = array(
+            'FORUMName' => 'Daw Forum',
+            'MENU1' => 'SubForum1',
+            'MENU2' => 'SubForum2',
+            'MENU3' => 'SubForum3',
+            'MENU4' => 'Login',
+            'MENU5' => 'Register',
+            'Msg'   => '“Welcome back!',
+            'text_color' => 'green',
+            'back_color' => '#00d269',
+            'icon' => 'glyphicon glyphicon-log-in',
+         );
+
+        $pwdHash=substr(md5($request->pwd),0,32);
+        $nrows=Blog_model::check_pwd($request->email,$pwdHash);
+        if(count($nrows)>0)
+            return view('message_template',$values);  
+        else 
+         return redirect('login')->withErrors('Wrong email or password.'); 
+    }
+    
 }
 ?>
