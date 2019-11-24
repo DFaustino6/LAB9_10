@@ -14,3 +14,4 @@ class Blog_model
         return $query;
     } 
 }
+?>

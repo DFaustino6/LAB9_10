@@ -15,7 +15,7 @@ class Blog extends Controller
             'MENU3' => 'SubForum3',
             'MENU4' => 'Login',
             'MENU5' => 'Register',
-            'href5' => 'register',
+            'href5' => 'Blog@register',
             'db'   => $db,
          );
         
@@ -40,10 +40,9 @@ class Blog extends Controller
             'MENU5' => 'Register',
             'Username' => $Username,
             'Email' => $Email,
-           /* 'href4' => 'Login',*/
+           /*'href4' => 'Login',*/
             'href5' => 'register',
-         );
-        
+         );  
         return view('register_template',$values);
     }
 
@@ -66,3 +65,4 @@ class Blog extends Controller
         return view('message_template',$values);
     }
 }
+?>
