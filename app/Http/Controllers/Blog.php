@@ -23,6 +23,14 @@ class Blog extends Controller
     }
 
     public function register(){
+        $Username='';
+        $Email='';
+        if(isset($_REQUEST['ErrorType'])){
+            $ErrorMsg=errorMsg($_REQUEST['ErrorType']);
+            $Username=$_REQUEST['Username'];
+            $Email=$_REQUEST['Email'];
+         }
+
         $values = array(
             'FORUMName' => 'Daw Forum',
             'MENU1' => 'SubForum1',
@@ -30,6 +38,8 @@ class Blog extends Controller
             'MENU3' => 'SubForum3',
             'MENU4' => 'Login',
             'MENU5' => 'Register',
+            'Username' => $Username,
+            'Email' => $Email,
            /* 'href4' => 'Login',*/
             'href5' => 'register',
          );
