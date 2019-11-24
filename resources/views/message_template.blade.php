@@ -3,7 +3,7 @@
 <head>
 	<title>FORUM</title>
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-  	<meta http-equiv="refresh" content="3; url=index.php">
+  	<meta http-equiv="refresh" content="3; url=/">
 </head>
 <body>
 

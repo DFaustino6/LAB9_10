@@ -15,7 +15,7 @@ class Blog extends Controller
             'MENU3' => 'SubForum3',
             'MENU4' => 'Login',
             'MENU5' => 'Register',
-            'href5' => 'Blog@register',
+            'href5' => '/register',
             'db'   => $db,
          );
         
