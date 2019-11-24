@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <hmtl>
 <head>
@@ -14,14 +15,14 @@
 <nav class="navbar navbar-inverse" style="background-color: #006699; border-color: #006699">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" style="color: white" href="#">{$FORUMName}</a>
+      <a class="navbar-brand" style="color: white" href="{$href0}">{{$FORUMName}}</a>
     </div>
     <ul class="nav navbar-nav navbar-left">
         <li class="dropdown table-bordered" ><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; background-color: #006699">Menu&nbsp;<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">{$MENU1}</a></li>
-            <li><a href="#">{$MENU2}</a></li>
-            <li><a href="#">{$MENU3}</a></li>
+            <li><a href="#">{{$MENU1}}</a></li>
+            <li><a href="#">{{$MENU2}}}</a></li>
+            <li><a href="#">{{$MENU3}}</a></li>
           </ul> 
         </li>
         <li>
@@ -38,9 +39,8 @@
         </li>
         </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#" style="color: white">{$MENU4}</a></li>
-      <li><a href="#" style="color: white">{$MENU5}</a></li>
-      <li><a style="color: white;">{$MENU6}</a></li>
+      <li><a href="{$href4}" style="color: white">{{$MENU4}}</a></li>
+      <li><a href="{{$href5}}" style="color: white">{{$MENU5}}</a></li>
     </ul>
   </div>
 </nav>
@@ -81,14 +81,14 @@
   <div class="row">
     <div class="col-sm-2">
       <div class="well text-center">
-        <a href="#"><img src="resources\assets\plus.png" style="width: 60%;" class="center"></a>
+        <a href="newblog_action.php"><img src="resources\assets\plus.png" style="width: 60%;" class="center"></a>
         <p>Add new post</p>
       </div>
     </div>
     <div class="col-sm-8">
       <div class="well" >
         <div class="panel-group">
-        @foreach ($post as $posts)
+        @foreach ($db as $posts)
           <div class="panel panel-default" style="background-color:#0099ff ">
             <div class="panel panel-heading" style="background-color:#0099ff">
               <div class="media">
@@ -97,11 +97,14 @@
                 </div>
               </div>
               <div class="row" style="padding: 1%" >
-                <div class="col-sm-7">
-                    <h4 style="color:white;">Created by:{{$posts->username}}</h4>
+                <div class="col-sm-6">
+                    <h4 style="color:white;">Created by:{{$posts->name}}</h4>
+      
+                      <a href="blog.php?Post_id={$post.id}" role="button" class="btn btn-success" style="width: 35%"><span class="glyphicon glyphicon-edit"></span>&nbsp;Update</a>
+  
                 </div>
-                <div class="col-sm-5">
-                  <h4 style="color:white;text-align: right">Last updated:{{$posts->update_at}}</h4>
+                <div class="col-sm-6">
+                  <h4 style="color:white;text-align: right">Last updated:{{$posts->updated_at}}</h4>
                 </div>
               </div>
             </div>
