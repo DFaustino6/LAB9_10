@@ -11,6 +11,6 @@
 |
 */
 Route::get('/', 'Blog@register');
-Route::get('/register', 'Blog@register');
-//Route::get('/register_action', 'Blog@register_action');
+Route::post('/register', 'Blog@register');
+Route::post('/register_action', 'Blog@register_action');
 ?>
