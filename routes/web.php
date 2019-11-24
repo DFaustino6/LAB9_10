@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'Blog@register');
+Route::get('/', 'Blog@index');
 Route::get('/register', 'Blog@register');
 Route::post('/register_action', 'Blog@register_action');
 ?>
