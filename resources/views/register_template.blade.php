@@ -44,7 +44,7 @@
 			<h3 style="color: white;">Register</h3>
 		</div>
 		<div class="container-fluid text-left" style="padding-top: 0.5%;border-radius: 5px">
-			 <form class="form-horizontal" action="" method="POST">
+			 <form class="form-horizontal" action="{{URL::to('/')}}" method="POST">
 			 	<div class="form-group">
 			      <label class="control-label col-sm-2" for="email">Username:</label>
 			      <div class="col-sm-10">
