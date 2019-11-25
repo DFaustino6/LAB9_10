@@ -39,6 +39,9 @@
         </li>
         </ul>
     <ul class="nav navbar-nav navbar-right">
+      @if(isset($loginId))
+        <li><a href="{{$href6}}" style="color: white">{{$MENU6}}</a></li>
+      @endif
       <li><a href="{{$href4}}" style="color: white">{{$MENU4}}</a></li>
       <li><a href="{{$href5}}" style="color: white">{{$MENU5}}</a></li>
     </ul>
@@ -100,7 +103,7 @@
                 <div class="col-sm-6">
                     <h4 style="color:white;">Created by:{{$posts->name}}</h4>
                     @if(isset($loginId) && $loginId == $posts->user_id)
-                      <a href="blog.php?Post_id={$post.id}" role="button" class="btn btn-success" style="width: 35%"><span class="glyphicon glyphicon-edit"></span>&nbsp;Update</a>
+                      <a href="post?Post_id={{$posts->id}}" role="button" class="btn btn-success" style="width: 35%"><span class="glyphicon glyphicon-edit"></span>&nbsp;Update</a>
                     @endif
                 </div>
                 <div class="col-sm-6">

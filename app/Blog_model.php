@@ -31,5 +31,20 @@ class Blog_model
         $query=DB::select($pass);
         return $query;
     }
+    
+    public static function new_blog(){
+
+    }
+    
+    public static function get_blog($user_id,$PostId){
+         $blog  = "SELECT content FROM microposts WHERE user_id ='$user_id' AND id='$PostId'";
+         $query=DB::select($blog);
+         return $query;
+    } 
+    
+    public static function update_blog(){
+
+    }
+
 }
 ?>

@@ -17,6 +17,8 @@ class Blog extends Controller
                 'MENU4' => 'Logout',
                 'href4' => 'logout_action',
                 'MENU5' => 'Welcome'.' '.session()->get('name'),
+                'MENU6' => 'Blog',
+                'href6' => 'post',
                 'loginId' => session()->get('id'),
                 'href5' => '#',
                 'db'   => $db
@@ -138,6 +140,24 @@ class Blog extends Controller
          );
         return view('message_template',$values);
     }
+
+    public function post($blog_id = FALSE)
+    {
+        //$nrows=Blog_model::get_blog();
+        print_r($get->Pos_id);
+        $values = array(
+            'FORUMName' => 'Daw Forum',
+            'MENU1' => 'Blog',
+            'href1' => 'post',
+            'ActionPost' => 'Write',
+        );
+        //return view('blog_template',$values);
+    } 
     
+    public function post_action($blog_id = FALSE)
+    {
+
+    }
+
 }
 ?>
