@@ -15,4 +15,5 @@ Route::get('/register', 'Blog@register');
 Route::post('/register', 'Blog@register_action');
 Route::get('/login', 'Blog@login');
 Route::post('/login', 'Blog@login_action');
+Route::get('/logout_action', 'Blog@logout_action');
 ?>

@@ -15,7 +15,7 @@ class Blog extends Controller
                 'MENU2' => 'SubForum2',
                 'MENU3' => 'SubForum3',
                 'MENU4' => 'Logout',
-                'href4' => '#',
+                'href4' => 'logout_action',
                 'MENU5' => 'Welcome'.' '.session()->get('name'),
                 'loginId' => session()->get('id'),
                 'href5' => '#',
@@ -102,9 +102,9 @@ class Blog extends Controller
             'MENU1' => 'SubForum1',
             'MENU2' => 'SubForum2',
             'MENU3' => 'SubForum3',
-            'MENU4' => 'Login',
-            'MENU5' => 'Register',
-            'Msg'   => '“Welcome back!',
+            'MENU4' => 'Logout',
+            'MENU5' => 'Welcome',
+            'Msg'   => 'Welcome back!',
             'text_color' => 'green',
             'back_color' => '#00d269',
             'icon' => 'glyphicon glyphicon-log-in',
@@ -120,6 +120,23 @@ class Blog extends Controller
         } 
         else 
          return redirect('login')->withErrors('Wrong email or password.'); 
+    }
+
+    public function logout_action(){
+        session()->flush();
+        $values = array(
+            'FORUMName' => 'Daw Forum',
+            'MENU1' => 'SubForum1',
+            'MENU2' => 'SubForum2',
+            'MENU3' => 'SubForum3',
+            'MENU4' => 'Login',
+            'MENU5' => 'Register',
+            'Msg'   => 'See you back soon!',
+            'text_color' => 'black',
+            'back_color' => '#ff9966',
+            'icon' => 'glyphicon glyphicon-log-out'
+         );
+        return view('message_template',$values);
     }
     
 }
