@@ -29,6 +29,7 @@
               <button type="submit" name="submit" class="btn btn-success btn-lg">Post</button>
               <a href="index.php" role="button" name="cancel" class="btn btn-danger btn-lg">Cancel</a>
             </div>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
         </form>
     </div>
 </div>	

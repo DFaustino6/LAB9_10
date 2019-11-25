@@ -32,8 +32,9 @@ class Blog_model
         return $query;
     }
     
-    public static function new_blog(){
-
+    public static function new_blog($user_id,$content){
+        $newBlog  = "INSERT INTO microposts(user_id,content,created_at,updated_at) VALUES ('$user_id','$content',NOW(),NOW())";
+        $query=DB::insert($newBlog);
     }
     
     public static function get_blog($user_id,$PostId){
@@ -43,7 +44,7 @@ class Blog_model
     } 
     
     public static function update_blog(){
-
+        
     }
 
 }

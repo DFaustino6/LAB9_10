@@ -152,16 +152,31 @@ class Blog extends Controller
             'MENU1' => 'Blog',
             'href1' => 'post',
             'ActionPost' => 'Write',
-        );
-
-        if(count($nrows)<0)
-            
+        );  
         return view('blog_template',$values);
     } 
     
-    public function post_action($blog_id = FALSE)
-    {
-
+    public function post_action($blog_id = null,Request $request)
+    {   
+        $user_id=session()->get('id');
+        $nrows=Blog_model::get_blog($user_id,$blog_id);
+        
+        $content=$request->postContent;
+        if(count($nrows)<0){
+            Blog_model::new_blog($user_id,$content);
+            $values = array(
+                'FORUMName' => 'Daw Forum',
+                'MENU1' => 'SubForum1',
+                'MENU2' => 'SubForum2',
+                'MENU3' => 'SubForum3',
+                'MENU4' => 'Login',
+                'Msg'   => 'SUCCESS: New post submitted!',
+                'text_color' => 'green',
+                'back_color' => '#00d269',
+                'icon' => 'glyphicon glyphicon-ok'
+             );
+            return view('message_template',$values);
+        }
     }
 
 }
