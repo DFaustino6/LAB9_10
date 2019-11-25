@@ -65,7 +65,7 @@
 			     <div class="form-group">        
 			      <div class="col-sm-offset-2 col-sm-10">
 			        <div class="checkbox">
-			          <label><input type="checkbox" name="autologin" value="1">Remember me.</label>
+			          <label><input type="checkbox" name="autologin" value="true">Remember me.</label>
 			        </div>
 			      </div>
 			    </div>

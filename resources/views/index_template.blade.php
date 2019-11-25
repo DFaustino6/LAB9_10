@@ -58,15 +58,15 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="resources\assets\images\img1.png" >
+      <img src="{{asset('resources\assets\images\img1.png')}}" >
     </div>
 
     <div class="item">
-      <img src="resources\assets\images\img2.png" >
+      <img src="{{asset('resources\assets\images\img2.png')}}" >
     </div>
 
     <div class="item">
-      <img src="resources\assets\images\img3.png" >
+      <img src="{{asset('resources\assets\images\img3.png')}}" >
     </div>
   </div>
 
@@ -84,7 +84,7 @@
   <div class="row">
     <div class="col-sm-2">
       <div class="well text-center">
-        <a href="{{action('Blog@post','')}}"><img src="resources\assets\images\plus.png" style="width: 60%;" class="center"></a>
+        <a href="{{action('Blog@post','')}}"><img src="{{asset('resources\assets\images\plus.png')}}" style="width: 60%;" class="center"></a>
         <p>Add new post</p>
       </div>
     </div>
@@ -96,7 +96,7 @@
             <div class="panel panel-heading" style="background-color:#0099ff">
               <div class="media">
                 <div class="media-top">
-                  <img src="resources\assets\images\img_avatar1.png" class="media-object" style="width:12%">
+                  <img src="{{asset('resources\assets\images\img_avatar1.png')}}" class="media-object" style="width:12%">
                 </div>
               </div>
               <div class="row" style="padding: 1%" >
