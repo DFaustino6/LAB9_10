@@ -14,7 +14,7 @@ class Blog extends Controller
                 'MENU2' => 'SubForum2',
                 'MENU3' => 'SubForum3',
                 'MENU4' => 'Logout',
-                'href4' => 'logout_action',
+                'href4' => 'logout',
                 'MENU5' => 'Welcome'.' '.session()->get('name'),
                 'MENU6' => 'Blog',
                 'href6' => 'post',
@@ -120,7 +120,7 @@ class Blog extends Controller
          return redirect('login')->withErrors('Wrong email or password.'); 
     }
 
-    public function logout_action(){
+    public function logout(){
         session()->flush();
         $values = array(
             'FORUMName' => 'Daw Forum',
@@ -159,7 +159,7 @@ class Blog extends Controller
         $nrows=Blog_model::get_blog($user_id,$blog_id);
         $values = array(
             'MENU0' => 'Logout',
-            'href0' => 'logout_action',
+            'href0' => 'logout',
             'MENU1' => 'Welcome'.' '.session()->get('name'),
             'href1' => 'post',
             'ActionPost' => 'Write',
