@@ -8,6 +8,7 @@ class Blog extends Controller
 {
     public function index(){
         $db=Blog_model::get_posts();
+        self::checkForCookie('siteAuth');
         if(session()->has('id')){
             $values = array(
                 'MENU1' => 'SubForum1',
@@ -114,13 +115,15 @@ class Blog extends Controller
             session()->regenerate();
             session(['name' => $nrows[0]->name]);
             session(['id' => $nrows[0]->id]);
+            if($request->autologin == true){ 
+                $cookie_name = 'siteAuth';
+                $cookie_time = (60 * 24 * 30); // 30 days
+                $remember_digest = substr(md5(time()),0,32);
+                Blog_model::set_remember_digest($request->email,$remember_digest);
+                Cookie::queue($cookie_name,$remember_digest,$cookie_time);
+            }
             return view('message_template',$values); 
-        } if($request->autologin == true){ 
-            $cookie_name = 'siteAuth';
-            $cookie_time = (60 * 24 * 30); // 30 days
-            $remember_digest = substr(md5(time()),0,32);
-            Cookie::queue($cookie_name,$remember_digest,$cookie_time);
-        }
+        } 
         else 
          return redirect('login')->withErrors('Wrong email or password.'); 
     }
@@ -219,7 +222,11 @@ class Blog extends Controller
     public function checkForCookie($name){
         if(Cookie::has($name)==1) { //retorna 1 se existir a cookie
             $cookie = Cookie::get($name); //retorna o valor associado a cookie...
-            $User = Blog_model::check_remember_digest($cookie);
+            $nrows = Blog_model::check_remember_digest($cookie);
+            if(count($nrows)>0) {
+                session(['name' => $nrows[0]->name]);
+                session(['id' => $nrows[0]->id]);
+            }
         }      
     }
 }
