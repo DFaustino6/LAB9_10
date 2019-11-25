@@ -45,9 +45,9 @@ class Blog extends Controller
             'MENU2' => 'SubForum2',
             'MENU3' => 'SubForum3',
             'MENU4' => 'Login',
-            'href4' => 'blog/login',
+            'href4' => 'login',
             'MENU5' => 'Register',
-            'href5' => 'blog/register'
+            'href5' => 'register'
          );  
 
         return view('register_template',$values);
@@ -88,9 +88,9 @@ class Blog extends Controller
             'MENU2' => 'SubForum2',
             'MENU3' => 'SubForum3',
             'MENU4' => 'Login',
-            'href4' => 'blog/login',
+            'href4' => 'login',
             'MENU5' => 'Register',
-            'href5' => 'blog/register',
+            'href5' => 'register',
          ); 
 
         return view('login_template',$values);
