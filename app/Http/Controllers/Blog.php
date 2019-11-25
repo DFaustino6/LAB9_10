@@ -143,8 +143,9 @@ class Blog extends Controller
 
     public function post($blog_id = FALSE )
     {
-        //$nrows=Blog_model::get_blog();
-        print_r($blog_id);
+        $user_id=session()->get('id');
+        $nrows=Blog_model::get_blog($user_id,$blog_id);
+        //print_r($blog_id);
         $values = array(
             'FORUMName' => 'Daw Forum',
             'href0' => 'index.php',
@@ -152,6 +153,9 @@ class Blog extends Controller
             'href1' => 'post',
             'ActionPost' => 'Write',
         );
+
+        if(count($nrows)<0)
+            
         return view('blog_template',$values);
     } 
     
