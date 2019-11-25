@@ -10,17 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'Blog@index');
-Route::get('/register', 'Blog@register');
-Route::post('/register', 'Blog@register_action');
-Route::get('/login', 'Blog@login');
-Route::post('/login', 'Blog@login_action');
-Route::get('/logout', 'Blog@logout');
+Route::get('/', function () {
+    return view('welcome');
+}); 
+Route::get('/blog', 'Blog@index');
+Route::get('/blog/register', 'Blog@register');
+Route::post('/blog/register', 'Blog@register_action');
+Route::get('/blog/login', 'Blog@login');
+Route::post('/blog/login', 'Blog@login_action');
+Route::get('/blog/logout', 'Blog@logout');
 
 
-Route::get('/post','Blog@post');
-Route::get('/post/{id}','Blog@post');
+Route::get('/blog/post','Blog@post');
+Route::get('/blog/post/{id}','Blog@post');
 
-Route::post('/post_action','Blog@post_action');
-Route::post('/post_action/{id}','Blog@post_action');
+Route::post('/blog/post_action','Blog@post_action');
+Route::post('/blog/post_action/{id}','Blog@post_action');
 ?>
