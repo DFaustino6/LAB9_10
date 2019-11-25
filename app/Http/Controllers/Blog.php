@@ -10,7 +10,6 @@ class Blog extends Controller
         $db=Blog_model::get_posts();
         if(session()->has('id')){
             $values = array(
-                'FORUMName' => 'Daw Forum',
                 'MENU1' => 'SubForum1',
                 'MENU2' => 'SubForum2',
                 'MENU3' => 'SubForum3',
@@ -26,7 +25,6 @@ class Blog extends Controller
         }
         else{
             $values = array(
-                'FORUMName' => 'Daw Forum',
                 'MENU1' => 'SubForum1',
                 'MENU2' => 'SubForum2',
                 'MENU3' => 'SubForum3',
@@ -42,7 +40,6 @@ class Blog extends Controller
 
     public function register(){
         $values = array(
-            'FORUMName' => 'Daw Forum',
             'MENU1' => 'SubForum1',
             'MENU2' => 'SubForum2',
             'MENU3' => 'SubForum3',
@@ -57,7 +54,6 @@ class Blog extends Controller
 
     public function register_action(Request $request){
         $values = array(
-            'FORUMName' => 'Daw Forum',
             'MENU1' => 'SubForum1',
             'MENU2' => 'SubForum2',
             'MENU3' => 'SubForum3',
@@ -143,41 +139,75 @@ class Blog extends Controller
 
     public function post($blog_id = FALSE )
     {
-        $user_id=session()->get('id');
-        $nrows=Blog_model::get_blog($user_id,$blog_id);
-        //print_r($blog_id);
+        if(!session()->has('id')) {
         $values = array(
-            'FORUMName' => 'Daw Forum',
-            'href0' => 'index.php',
-            'MENU1' => 'Blog',
+            'MENU1' => 'SubForum1',
+            'MENU2' => 'SubForum2',
+            'MENU3' => 'SubForum3',
+            'MENU4' => 'Login',
+            'MENU5' => 'Register',
+            'Msg'   => 'ERROR: Login first',
+            'text_color' => 'red',
+            'back_color' => '#ff9d9d',
+            'icon' => 'glyphicon glyphicon-remove'
+        );
+            return view('message_template',$values);
+        }
+
+        $user_id=session()->get('id');
+        
+        $nrows=Blog_model::get_blog($user_id,$blog_id);
+        $values = array(
+            'MENU0' => 'Logout',
+            'href0' => 'logout_action',
+            'MENU1' => 'Welcome'.' '.session()->get('name'),
             'href1' => 'post',
             'ActionPost' => 'Write',
-        );  
+            'PostId' => '',
+            'Post_content' => ''
+        ); 
+        if(!empty($blog_id)) {
+            $values['Post_content'] = $nrows[0]->content;
+            $values['PostId'] = $blog_id;
+        } 
         return view('blog_template',$values);
     } 
     
-    public function post_action($blog_id = null,Request $request)
+    public function post_action(Request $request, $blog_id = FALSE)
     {   
         $user_id=session()->get('id');
         $nrows=Blog_model::get_blog($user_id,$blog_id);
-        
         $content=$request->postContent;
-        if(count($nrows)<0){
-            Blog_model::new_blog($user_id,$content);
+        if(count($nrows)>0){
+           Blog_model::update_blog($user_id,$blog_id,$content);
             $values = array(
-                'FORUMName' => 'Daw Forum',
                 'MENU1' => 'SubForum1',
                 'MENU2' => 'SubForum2',
                 'MENU3' => 'SubForum3',
-                'MENU4' => 'Login',
+                'MENU4' => 'Logout',
+                'MENU5' => 'Welcome'.' '.session()->get('name'),
+                'Msg'   => 'SUCCESS: Post updated',
+                'text_color' => 'green',
+                'back_color' => '#00d269',
+                'icon' => 'glyphicon glyphicon-ok'
+            );
+            return view('message_template',$values);
+        }
+        else{ 
+            Blog_model::new_blog($user_id,$content);
+            $values = array(
+                'MENU1' => 'SubForum1',
+                'MENU2' => 'SubForum2',
+                'MENU3' => 'SubForum3',
+                'MENU4' => 'Logout',
+                'MENU5' => 'Welcome'.' '.session()->get('name'),
                 'Msg'   => 'SUCCESS: New post submitted!',
                 'text_color' => 'green',
                 'back_color' => '#00d269',
                 'icon' => 'glyphicon glyphicon-ok'
-             );
+            );
             return view('message_template',$values);
         }
     }
-
 }
 ?>

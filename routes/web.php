@@ -16,6 +16,11 @@ Route::post('/register', 'Blog@register_action');
 Route::get('/login', 'Blog@login');
 Route::post('/login', 'Blog@login_action');
 Route::get('/logout_action', 'Blog@logout_action');
-Route::get('/post', 'Blog@post');
-Route::post('/post','Blog@post_action');
+
+
+Route::get('/post','Blog@post');
+Route::get('/post/{id}','Blog@post');
+
+Route::post('/post_action','Blog@post_action');
+Route::post('/post_action/{id}','Blog@post_action');
 ?>

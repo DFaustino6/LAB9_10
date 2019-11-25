@@ -9,25 +9,26 @@
 <nav class="navbar navbar-inverse" style="background-color: #006699; border-color: #006699">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" style="color: white" href="{{$href0}}">{{$FORUMName}}</a>
+			<a class="navbar-brand" style="color: white" href="{{action('Blog@index')}}">Daw Forum</a>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
+      <li><a href="{{$href0}}" style="color: white">{{$MENU0}}</a></li>
 			<li><a href="{{$href1}}" style="color: white">{{$MENU1}}</a></li>
 		</ul>
 	</div>
 </nav>
 <div class="container" style="padding-top: 1%">
 	<div class="container-fluid well">
-        <form class="form-vertical"  method="POST">
+        <form class="form-vertical"  action="{{action('Blog@post_action',$PostId)}}" method="POST">
             <div class="form-group">
               <label class="control-label col-sm-3" for="post" style="font-size: x-large">{{$ActionPost}} your post:</label>
               <div>
-                <textarea rows="5" class="form-control" id="post" name="postContent" style="resize: vertical;">{$Post_content}</textarea>
+                <textarea rows="5" class="form-control" id="post" name="postContent" style="resize: vertical;">{{$Post_content}}</textarea>
               </div>
             </div>
             <div class="form-group" style="padding-top: 1%">
               <button type="submit" name="submit" class="btn btn-success btn-lg">Post</button>
-              <a href="index.php" role="button" name="cancel" class="btn btn-danger btn-lg">Cancel</a>
+              <a href="{{action('Blog@index')}}" role="button" name="cancel" class="btn btn-danger btn-lg">Cancel</a>
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
         </form>

@@ -14,7 +14,7 @@
 <nav class="navbar navbar-inverse" style="background-color: #006699; border-color: #006699">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" style="color: white" href="/LAB9_10">{{$FORUMName}}</a>
+      <a class="navbar-brand" style="color: white" href="{{action('Blog@index')}}">Daw Forum</a>
     </div>
     <ul class="nav navbar-nav navbar-left">
         <li class="dropdown table-bordered" ><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; background-color: #006699">Menu&nbsp;<span class="caret"></span></a>

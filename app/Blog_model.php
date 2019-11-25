@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 class Blog_model 
 {
     public static function get_posts(){
-        $sql  = "SELECT microposts.content, microposts.created_at, microposts.updated_at, users.name, microposts.upvotes,microposts.downvotes,microposts.user_id
+        $sql  = "SELECT microposts.content, microposts.created_at, microposts.updated_at, users.name, microposts.upvotes,microposts.downvotes,microposts.user_id, microposts.id
              FROM microposts, users
              WHERE microposts.user_id = users.id
              ORDER BY microposts.updated_at DESC";
@@ -32,19 +32,21 @@ class Blog_model
         return $query;
     }
     
-    public static function new_blog($user_id,$content){
-        $newBlog  = "INSERT INTO microposts(user_id,content,created_at,updated_at) VALUES ('$user_id','$content',NOW(),NOW())";
+    public static function new_blog($user_id,$blog){
+        $newBlog  = "INSERT INTO microposts(user_id,content,created_at,updated_at) VALUES ('$user_id','$blog',NOW(),NOW())";
         $query=DB::insert($newBlog);
     }
     
-    public static function get_blog($user_id,$PostId){
-         $blog  = "SELECT content FROM microposts WHERE user_id ='$user_id' AND id='$PostId'";
+    public static function get_blog($user_id,$blog_id){
+         $blog  = "SELECT content FROM microposts WHERE user_id ='$user_id' AND id='$blog_id'";
          $query=DB::select($blog);
          return $query;
     } 
     
-    public static function update_blog(){
-        
+    public static function update_blog($user_id,$blog_id,$content){
+        $updateBlog = "UPDATE microposts SET content='$content', updated_at=NOW() WHERE id='$blog_id' AND user_id='$user_id'";
+        $query=DB::update($updateBlog);
+        return $query;
     }
 
 }

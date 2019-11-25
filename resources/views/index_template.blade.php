@@ -15,7 +15,7 @@
 <nav class="navbar navbar-inverse" style="background-color: #006699; border-color: #006699">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" style="color: white" href="/LAB9_10">{{$FORUMName}}</a>
+      <a class="navbar-brand" style="color: white" href="{{action('Blog@index')}}">Daw Forum</a>
     </div>
     <ul class="nav navbar-nav navbar-left">
         <li class="dropdown table-bordered" ><a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: white; background-color: #006699">Menu&nbsp;<span class="caret"></span></a>
@@ -84,7 +84,7 @@
   <div class="row">
     <div class="col-sm-2">
       <div class="well text-center">
-        <a href="newblog_action.php"><img src="resources\assets\images\plus.png" style="width: 60%;" class="center"></a>
+        <a href="{{action('Blog@post','')}}"><img src="resources\assets\images\plus.png" style="width: 60%;" class="center"></a>
         <p>Add new post</p>
       </div>
     </div>
@@ -103,7 +103,7 @@
                 <div class="col-sm-6">
                     <h4 style="color:white;">Created by:{{$posts->name}}</h4>
                     @if(isset($loginId) && $loginId == $posts->user_id)
-                      <a href="post" role="button" class="btn btn-success" style="width: 35%"><span class="glyphicon glyphicon-edit"></span>&nbsp;Update</a>
+                      <a href="{{action('Blog@post',$posts->id)}}" role="button" class="btn btn-success" style="width: 35%"><span class="glyphicon glyphicon-edit"></span>&nbsp;Update</a>
                     @endif
                 </div>
                 <div class="col-sm-6">
