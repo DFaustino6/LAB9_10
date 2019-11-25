@@ -55,15 +55,15 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
     <div class="item active">
-      <img src="resources\assets\img1.png" >
+      <img src="resources\assets\images\img1.png" >
     </div>
 
     <div class="item">
-      <img src="resources\assets\img2.png" >
+      <img src="resources\assets\images\img2.png" >
     </div>
 
     <div class="item">
-      <img src="resources\assets\img3.png" >
+      <img src="resources\assets\images\img3.png" >
     </div>
   </div>
 
@@ -81,7 +81,7 @@
   <div class="row">
     <div class="col-sm-2">
       <div class="well text-center">
-        <a href="newblog_action.php"><img src="resources\assets\plus.png" style="width: 60%;" class="center"></a>
+        <a href="newblog_action.php"><img src="resources\assets\images\plus.png" style="width: 60%;" class="center"></a>
         <p>Add new post</p>
       </div>
     </div>
@@ -93,15 +93,15 @@
             <div class="panel panel-heading" style="background-color:#0099ff">
               <div class="media">
                 <div class="media-top">
-                  <img src="resources\assets\img_avatar1.png" class="media-object" style="width:12%">
+                  <img src="resources\assets\images\img_avatar1.png" class="media-object" style="width:12%">
                 </div>
               </div>
               <div class="row" style="padding: 1%" >
                 <div class="col-sm-6">
                     <h4 style="color:white;">Created by:{{$posts->name}}</h4>
-      
+                    @if(isset($loginId) && $loginId == $posts->user_id)
                       <a href="blog.php?Post_id={$post.id}" role="button" class="btn btn-success" style="width: 35%"><span class="glyphicon glyphicon-edit"></span>&nbsp;Update</a>
-  
+                    @endif
                 </div>
                 <div class="col-sm-6">
                   <h4 style="color:white;text-align: right">Last updated:{{$posts->updated_at}}</h4>

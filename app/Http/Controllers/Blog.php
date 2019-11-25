@@ -8,18 +8,33 @@ class Blog extends Controller
 {
     public function index(){
         $db=Blog_model::get_posts();
-        $values = array(
-            'FORUMName' => 'Daw Forum',
-            'MENU1' => 'SubForum1',
-            'MENU2' => 'SubForum2',
-            'MENU3' => 'SubForum3',
-            'MENU4' => 'Login',
-            'href4' => 'login',
-            'MENU5' => 'Register',
-            'href5' => 'register',
-            'db'   => $db,
-         );
-        
+        if(session()->has('id')){
+            $values = array(
+                'FORUMName' => 'Daw Forum',
+                'MENU1' => 'SubForum1',
+                'MENU2' => 'SubForum2',
+                'MENU3' => 'SubForum3',
+                'MENU4' => 'Logout',
+                'href4' => '#',
+                'MENU5' => 'Welcome'.' '.session()->get('name'),
+                'loginId' => session()->get('id'),
+                'href5' => '#',
+                'db'   => $db
+            ); 
+        }
+        else{
+            $values = array(
+                'FORUMName' => 'Daw Forum',
+                'MENU1' => 'SubForum1',
+                'MENU2' => 'SubForum2',
+                'MENU3' => 'SubForum3',
+                'MENU4' => 'Login',
+                'href4' => 'login',
+                'MENU5' => 'Register',
+                'href5' => 'register',
+                'db'   => $db
+            ); 
+        }
         return view('index_template',$values);
     }
 
@@ -32,7 +47,7 @@ class Blog extends Controller
             'MENU4' => 'Login',
             'href4' => 'login',
             'MENU5' => 'Register',
-            'href5' => 'register',
+            'href5' => 'register'
          );  
 
         return view('register_template',$values);
@@ -48,7 +63,7 @@ class Blog extends Controller
             'Msg'   => 'Registration Completed.Welcome!',
             'text_color' => 'green',
             'back_color' => '#00d269',
-            'icon' => 'glyphicon glyphicon-ok',
+            'icon' => 'glyphicon glyphicon-ok'
          );
 
         $Username=$request->Username;
@@ -94,11 +109,15 @@ class Blog extends Controller
             'back_color' => '#00d269',
             'icon' => 'glyphicon glyphicon-log-in',
          );
-
+        
         $pwdHash=substr(md5($request->pwd),0,32);
         $nrows=Blog_model::check_pwd($request->email,$pwdHash);
-        if(count($nrows)>0)
-            return view('message_template',$values);  
+        if(count($nrows)>0){
+            session()->regenerate();
+            session(['name' => $nrows[0]->name]);
+            session(['id' => $nrows[0]->id]);
+            return view('message_template',$values); 
+        } 
         else 
          return redirect('login')->withErrors('Wrong email or password.'); 
     }
