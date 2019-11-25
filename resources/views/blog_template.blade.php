@@ -9,7 +9,7 @@
 <nav class="navbar navbar-inverse" style="background-color: #006699; border-color: #006699">
 	<div class="container-fluid">
 		<div class="navbar-header">
-			<a class="navbar-brand" style="color: white" href="{$href0}">{{$FORUMName}}</a>
+			<a class="navbar-brand" style="color: white" href="{{$href0}}">{{$FORUMName}}</a>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="{{$href1}}" style="color: white">{{$MENU1}}</a></li>

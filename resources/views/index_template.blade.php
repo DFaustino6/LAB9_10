@@ -103,7 +103,7 @@
                 <div class="col-sm-6">
                     <h4 style="color:white;">Created by:{{$posts->name}}</h4>
                     @if(isset($loginId) && $loginId == $posts->user_id)
-                      <a href="post?Post_id={{$posts->id}}" role="button" class="btn btn-success" style="width: 35%"><span class="glyphicon glyphicon-edit"></span>&nbsp;Update</a>
+                      <a href="post" role="button" class="btn btn-success" style="width: 35%"><span class="glyphicon glyphicon-edit"></span>&nbsp;Update</a>
                     @endif
                 </div>
                 <div class="col-sm-6">

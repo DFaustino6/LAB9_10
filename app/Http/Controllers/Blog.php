@@ -141,17 +141,18 @@ class Blog extends Controller
         return view('message_template',$values);
     }
 
-    public function post($blog_id = FALSE)
+    public function post($blog_id = FALSE )
     {
         //$nrows=Blog_model::get_blog();
-        print_r($get->Pos_id);
+        print_r($blog_id);
         $values = array(
             'FORUMName' => 'Daw Forum',
+            'href0' => 'index.php',
             'MENU1' => 'Blog',
             'href1' => 'post',
             'ActionPost' => 'Write',
         );
-        //return view('blog_template',$values);
+        return view('blog_template',$values);
     } 
     
     public function post_action($blog_id = FALSE)
