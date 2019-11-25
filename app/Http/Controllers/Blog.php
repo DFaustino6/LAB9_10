@@ -124,9 +124,10 @@ class Blog extends Controller
                 Cookie::queue($cookie_name,$remember_digest,$cookie_time);
             }
             return view('message_template',$values); 
-        } 
+        }   
+         
         else 
-         return redirect('blog/login')->withErrors('Wrong email or password.'); 
+            return redirect('blog/login')->withErrors('Wrong email or password.'); 
     }
 
     public function logout(){
